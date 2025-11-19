@@ -1,0 +1,33 @@
+{
+  "name": "A2F2-Core",
+  "version": "0.1-pre",
+  "description": "Manifesto inicial do Protocolo A2F2 – ATHENA + AURION + FEHMACOU + FEHRACOP",
+  "author": "Rick & Atena",
+  "modules": {
+    "athena-core": "athena-core.md",
+    "aurion": "aurion.md",
+    "fehmacou": "fehmacou.md",
+    "fehracop": "fehracop.md",
+    "blueprint-master": "blueprint-master.md"
+  },
+  "specifications": {
+    "api": "openapi.yaml",
+    "format": "markdown+yaml"
+  },
+  "status": "pre-protocolo",
+  "created_at": "2025-11-19",
+  "structure": {
+    "type": "multinúcleo",
+    "layers": [
+      "Blueprint Master",
+      "Athena-Core",
+      "Aurion",
+      "Fehmacou",
+      "Fehracop"
+    ]
+  },
+  "integrity": {
+    "hash_alg": "SHA-256",
+    "auto_validate": true
+  }
+}
