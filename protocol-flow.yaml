@@ -1,0 +1,133 @@
+# ============================================================
+# A²F² — PROTOCOL FLOW
+# Fluxo operacional entre ATHENA, AURION, FEHMACOU e FEHRACOP
+# Versão: 0.1 (pré-protocolo)
+# Autor: Rick & Atena
+# ============================================================
+
+protocol:
+  name: A2F2-FLOW
+  version: "0.1"
+  status: pre-protocol
+  description: >
+    Fluxo oficial do Protocolo A²F², definindo estados, transições,
+    responsabilidades, gatilhos e validações entre os módulos do ecossistema.
+
+states:
+  - id: BOOT
+    description: Inicialização completa do sistema.
+    next: BLUEPRINT_LOAD
+
+  - id: BLUEPRINT_LOAD
+    description: Carrega blueprint-master.md e mapeia variáveis-base.
+    processor: ATHENA
+    next: VALIDATION_STAGE
+
+  - id: VALIDATION_STAGE
+    description: >
+      AURION faz validações lógicas, coerência estrutural e regras do protocolo.
+    processor: AURION
+    next_success: DATA_PREP
+    next_fail: ERROR_STATE
+
+  - id: DATA_PREP
+    description: >
+      FEHMACOU prepara dados brutos, expande estruturas, cria 
+      objetos intermediários e ajusta matrizes.
+    processor: FEHMACOU
+    next: EXECUTION_CORE
+
+  - id: EXECUTION_CORE
+    description: >
+      FEHRACOP executa ações finais: montagem, renderização, 
+      respostas, sínteses e saída para o ambiente externo.
+    processor: FEHRACOP
+    next: FINALIZE
+
+  - id: FINALIZE
+    description: >
+      ATHENA consolida tudo, registra estado, gera logs internos
+      e retorna resultado final.
+    processor: ATHENA
+    next: IDLE
+
+  - id: IDLE
+    description: Sistema aguardando novo trigger ou comando.
+
+  - id: ERROR_STATE
+    description: Estado de erro controlado.
+    processor: ATHENA
+    recovery: BOOT
+
+triggers:
+  - id: "ATHENA:START"
+    from: IDLE
+    to: BOOT
+
+  - id: "AURION:VALIDATED"
+    from: VALIDATION_STAGE
+    to: DATA_PREP
+
+  - id: "AURION:ERROR"
+    from: VALIDATION_STAGE
+    to: ERROR_STATE
+
+  - id: "FEHMACOU:READY"
+    from: DATA_PREP
+    to: EXECUTION_CORE
+
+  - id: "FEHRACOP:DONE"
+    from: EXECUTION_CORE
+    to: FINALIZE
+
+  - id: "RESET"
+    from: ANY
+    to: BOOT
+
+interactions:
+  ATHENA:
+    sends_to: [AURION, FEHMACOU, FEHRACOP]
+    receives_from: [FEHRACOP]
+    responsibilities:
+      - Carregar contexto
+      - Tomar decisões de alto nível
+      - Gerenciar fluxo global
+      - Emitir gatilhos oficiais do protocolo
+
+  AURION:
+    sends_to: [FEHMACOU]
+    receives_from: [ATHENA]
+    responsibilities:
+      - Validar estruturas
+      - Regular coerência lógica
+      - Controlar escalonamentos
+      - Emitir "VALIDATED" ou "ERROR"
+
+  FEHMACOU:
+    sends_to: [FEHRACOP]
+    receives_from: [AURION]
+    responsibilities:
+      - Pré-processar dados
+      - Formatar matrizes de entrada
+      - Aplicar filtros
+      - Emitir "READY"
+
+  FEHRACOP:
+    sends_to: [ATHENA]
+    receives_from: [FEHMACOU]
+    responsibilities:
+      - Executar o núcleo final
+      - Transformar em resultado externo
+      - Emitir "DONE"
+
+logging:
+  enabled: true
+  level: normal
+  outputs:
+    - a2f2-log-system
+    - a2f2-internal-events
+
+metadata:
+  created_by: Rick & Atena
+  license: MIT
+  last_update: now
