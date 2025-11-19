@@ -1,25 +1,27 @@
 openapi: 3.0.3
-info:
-  title: A2F2 – Athena Aurion Fehmacou Fehracop API
-  description: >
-    Especificação inicial (pré-protocolo) do ecossistema A2F2.  
-    Este arquivo define os pontos de comunicação entre os módulos:
-    ATHENA-CORE, AURION, FEHMACOU e FEHRACOP.
 
+info:
+  title: A2F2 – API Athena Aurion Fehmacou Fehracop
+  description: >
+    Especificação inicial (pré-protocolo) da API do Sistema A²F².
+    Este arquivo define os pontos de integração entre:
+    - ATHENA-CORE
+    - AURION
+    - FEHMACOU
+    - FEHRACOP
   version: "0.1-pre"
 
 servers:
   - url: https://a2f2-core.dev/api
-    description: Servidor base (placeholder para execução futura)
+    description: Servidor base (placeholder)
 
 paths:
 
   /aurion/process:
     post:
-      summary: Processamento central do módulo AURION
+      summary: Processamento central do módulo Aurion
       description: >
-        Recebe instruções brutas vindas de ATHENA-CORE para validação,
-        conversão e repasse para FEHMACOU.
+        Ponto de entrada para operações estratégicas do AURION.
       requestBody:
         required: true
         content:
@@ -27,21 +29,27 @@ paths:
             schema:
               type: object
               properties:
-                instruction:
+                entrada:
                   type: string
-                  description: Instrução enviada por ATHENA-CORE
+                  description: Dados brutos para processamento.
       responses:
         "200":
-          description: Instrução validada e convertida
-        "400":
-          description: Erro de validação
+          description: Resultado do processamento Aurion.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  output:
+                    type: string
 
-  /fehmacou/execute:
+  /fehmacou/validate:
     post:
-      summary: Execução matemática e lógica bruta
+      summary: Validação estrutural realizada pela FEHMACOU
       description: >
-        FEHMACOU executa processamento lógico pesado, cálculos ou transformações
-        enviadas por AURION.
+        Analisa estruturas, padrões e requisitos.
       requestBody:
         required: true
         content:
@@ -49,21 +57,27 @@ paths:
             schema:
               type: object
               properties:
-                payload:
-                  type: object
-                  description: Dados já convertidos por AURION
+                pacote:
+                  type: string
+                  description: Pacote de dados para validação.
       responses:
         "200":
-          description: Resultado bruto gerado
-        "422":
-          description: Erro na execução da operação
+          description: Validação concluída.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  valido:
+                    type: boolean
+                  detalhes:
+                    type: string
 
-  /fehracop/refine:
+  /fehracop/compile:
     post:
-      summary: Refinamento final de resultados
+      summary: Compilação e transformação FEHRACOP
       description: >
-        FEHRACOP recebe os resultados de FEHMACOU e transforma em dados de alto nível
-        para uso por ATHENA-CORE.
+        Realiza a montagem final e otimização dos outputs.
       requestBody:
         required: true
         content:
@@ -71,35 +85,33 @@ paths:
             schema:
               type: object
               properties:
-                raw:
-                  type: object
-                  description: Resultado bruto vindo de FEHMACOU
+                token:
+                  type: string
+                dados:
+                  type: string
       responses:
         "200":
-          description: Resultado refinado pronto para ATHENA-CORE
+          description: Compilação entregue.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  pacote_final:
+                    type: string
 
 components:
   schemas:
-    Instruction:
+
+    PacoteA2F2:
       type: object
+      description: Pacote unificado utilizado entre os módulos.
       properties:
         id:
           type: string
-        content:
+        origem:
           type: string
-
-    RawResult:
-      type: object
-      properties:
-        operations:
-          type: array
-          items:
-            type: string
-
-    FinalResult:
-      type: object
-      properties:
-        summary:
-          type: string
-        confidence:
-          type: number
+        carga:
+          type: object
