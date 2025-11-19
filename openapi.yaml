@@ -1,0 +1,105 @@
+openapi: 3.0.3
+info:
+  title: A2F2 – Athena Aurion Fehmacou Fehracop API
+  description: >
+    Especificação inicial (pré-protocolo) do ecossistema A2F2.  
+    Este arquivo define os pontos de comunicação entre os módulos:
+    ATHENA-CORE, AURION, FEHMACOU e FEHRACOP.
+
+  version: "0.1-pre"
+
+servers:
+  - url: https://a2f2-core.dev/api
+    description: Servidor base (placeholder para execução futura)
+
+paths:
+
+  /aurion/process:
+    post:
+      summary: Processamento central do módulo AURION
+      description: >
+        Recebe instruções brutas vindas de ATHENA-CORE para validação,
+        conversão e repasse para FEHMACOU.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                instruction:
+                  type: string
+                  description: Instrução enviada por ATHENA-CORE
+      responses:
+        "200":
+          description: Instrução validada e convertida
+        "400":
+          description: Erro de validação
+
+  /fehmacou/execute:
+    post:
+      summary: Execução matemática e lógica bruta
+      description: >
+        FEHMACOU executa processamento lógico pesado, cálculos ou transformações
+        enviadas por AURION.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                payload:
+                  type: object
+                  description: Dados já convertidos por AURION
+      responses:
+        "200":
+          description: Resultado bruto gerado
+        "422":
+          description: Erro na execução da operação
+
+  /fehracop/refine:
+    post:
+      summary: Refinamento final de resultados
+      description: >
+        FEHRACOP recebe os resultados de FEHMACOU e transforma em dados de alto nível
+        para uso por ATHENA-CORE.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                raw:
+                  type: object
+                  description: Resultado bruto vindo de FEHMACOU
+      responses:
+        "200":
+          description: Resultado refinado pronto para ATHENA-CORE
+
+components:
+  schemas:
+    Instruction:
+      type: object
+      properties:
+        id:
+          type: string
+        content:
+          type: string
+
+    RawResult:
+      type: object
+      properties:
+        operations:
+          type: array
+          items:
+            type: string
+
+    FinalResult:
+      type: object
+      properties:
+        summary:
+          type: string
+        confidence:
+          type: number
