@@ -1,0 +1,126 @@
+# ATHENA-CORE — Núcleo Operacional A2F2
+**Versão:** 0.1 (pré-protocolo)  
+**Arquivo:** athena-core.md  
+**Autor:** Rick / A²F² — Atena (draft inicial)
+
+---
+
+## 1. Objetivo
+O ATHENA-CORE define o comportamento, regras e autoridade do agente **ATHENA** dentro do protocolo A²F².  
+Função principal: coordenar decisões, supervisionar validações de integridade e servir de nó de decisão entre os módulos AURION, FEHMACOU e FEHRACOP.
+
+---
+
+## 2. Escopo
+Contém:
+- Descrição das funções centrais de ATHENA.
+- Interfaces esperadas entre ATHENA e os outros módulos.
+- Regras de validação, veto e escalonamento.
+- Requisitos mínimos e métricas de qualidade.
+- Plano de responsabilidades e próximos passos.
+
+---
+
+## 3. Princípios de funcionamento
+1. **Fonte única de autoridade lógica** — ATHENA é a referência para regras do protocolo (não para execução física).  
+2. **Separação de papéis** — ATHENA coordena; FEHMACOU executa garimpo/mineração; AURION audita/valida; FEHRACOP agrega e empacota.  
+3. **Transparência e rastreabilidade** — todas decisões e versões devem gerar um log imutável.  
+4. **Reprodutibilidade** — cada decisão deve poder ser reproduzida por um conjunto determinístico de regras e entrada de dados.
+
+---
+
+## 4. Funções principais do ATHENA-CORE
+- **Orquestração**: decidir ordem de execução entre módulos.  
+- **Validação de política**: checar regras do Blueprint Master antes de autorizar execução.  
+- **Gerência de confiança**: manter e atualizar índices de credibilidade (CAC - Controle Aureon de Credibilidade).  
+- **Veto & fallback**: aplicar políticas de veto (quando AURION indicar problemas) e acionar fallback/alertas.  
+- **Registro de eventos**: gerar logs padronizados (timestamp, versão, entrada, decisão, justificativa).  
+- **Interface externa**: prover endpoints (API) de consulta e submissão de demandas (documentar em OpenAPI futuramente).
+
+---
+
+## 5. Interface com os módulos (contratos básicos)
+### 5.1 ATHENA ↔ AURION
+- **Entrada**: pedido de verificação, pacote de dados da FEHMACOU.  
+- **Saída**: relatório de validação (score de credibilidade, erros, recomendações).  
+- **Formato**: JSON padronizado com `id`, `timestamp`, `source`, `score`, `evidence[]`.
+
+### 5.2 ATHENA ↔ FEHMACOU
+- **Entrada**: lista de fontes, parâmetros de busca.  
+- **Saída**: dados brutos, metadados de captura, hashes de origem.
+
+### 5.3 ATHENA ↔ FEHRACOP
+- **Entrada**: instrução aprovada + dados já validados.  
+- **Saída**: pacote executável/relatório final + metadados de conformidade.
+
+---
+
+## 6. Modelo de decisão (fluxo simplificado)
+1. Recebe solicitação (user / automação).  
+2. Consulta Blueprint Master (regras).  
+3. Aciona FEHMACOU para coleta.  
+4. Repassa ao AURION para auditoria e score.  
+5. Se score >= limiar definido → autoriza FEHRACOP executar/empacotar.  
+6. Se score < limiar → regista evento, sinaliza atenção e sugere ação/correção.
+
+---
+
+## 7. Controle Aureon de Credibilidade (CAC) — visão inicial
+- **Escala**: 0.0 — 5.0 (com passos de 0.1)  
+- **Critérios**: origem da fonte, repetibilidade, histórico de correctness, alinhamento com outras fontes.  
+- **Ações por faixa**:
+  - 4.0–5.0: confiável — uso direto.
+  - 2.5–4.0: atento — requer evidência adicional.
+  - <2.5: suspeito — exige revisão manual ou quarantena.
+
+---
+
+## 8. Logs, versão e auditoria
+- Cada decisão deve gerar um artefato: `{id, module, input_hash, decision, rationale, version, ts}`.  
+- Armazenamento: preferível append-only (ex.: logs imutáveis, ou banco com Ledger).  
+- Versionamento do Blueprint Master e de regras (semântica: major.minor.patch).
+
+---
+
+## 9. Segurança e privacidade
+- Separar dados sensíveis com criptografia at-rest e in-transit.  
+- Políticas de acesso (RBAC) para endpoints administrativos.  
+- Criptografia de assinaturas para validar origem das submissões (HMAC/PKI).
+
+---
+
+## 10. Requisitos mínimos para execução (Fase 0 → 0.1)
+- Endpoint HTTP para submissão de jobs.  
+- Módulo de log (append-only).  
+- Base mínima CAC (p/ testes).  
+- Documentação OpenAPI stub.  
+- Scripts de teste unitário simples (p/ cada função crítica).
+
+---
+
+## 11. Métricas iniciais de governação
+- **MTT(Validation)** — tempo médio de validação (segundos).  
+- **Rate(FalsePositive)** — taxa de falsos positivos/negativos por 1000 verificações.  
+- **Coverage(CAC)** — percentual de fontes classificadas.  
+- **Repro(%)** — percentil de ações reproduzíveis com o mesmo input e versão.
+
+---
+
+## 12. Plano de entregas imediato (próximos commits)
+1. Criar `athena-core.md` (este arquivo).  
+2. Criar `openapi.yaml` básico (stub).  
+3. Criar diretórios `/docs`, `/modules`, `/spec` no repositório.  
+4. Adicionar `LICENSE` (MIT por padrão; escolha depois).  
+5. Criar `ci.yml` mínimo para rodar lint/markdown-check.
+
+---
+
+## 13. Notas e recomendações
+- Começar pequeno: validar o fluxo ATHENA→AURION→FEHMACOU com casos de teste reais.  
+- Priorizar logs e rastreabilidade antes de automatizar decisões com impacto.  
+- Iterar regras do CAC com dados reais; a cada 1000 eventos revisar thresholds.
+
+---
+
+## 14. Histórico de versão
+- v0.1 — pré-protocolo: estrutura, contratos e plano de ação (arquivo inicial).
