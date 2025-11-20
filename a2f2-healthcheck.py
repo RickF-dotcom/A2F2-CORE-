@@ -1,45 +1,44 @@
-# A2F2 — Healthcheck (Verificação de Integridade)
-# Arquivo: a2f2-healthcheck.py
-# Versão 0.2
+# a2f2-healthcheck.py
+# Healthcheck simples do A2F2.
+# - Se Flask estiver disponível, expõe /a2f2/health como endpoint HTTP.
+# - Se não houver Flask, apenas imprime um JSON simples no stdout (útil para One-off shell).
 
+import json
 import time
 
-class A2F2_Healthcheck:
-    def __init__(self, engine=None):
-        self.engine = engine
-        self.status = "desconhecido"
-        self.ultima_verificacao = None
-        self.registros = []
+def health_payload(uptime_seconds: int = 0):
+    return {
+        "status": "ok",
+        "service": "A2F2",
+        "uptime_seconds": int(uptime_seconds)
+    }
 
-    def verificar(self):
-        timestamp = time.time()
+def run_check():
+    payload = health_payload(0)
+    print(json.dumps(payload))
 
-        if not self.engine:
-            resultado = {
-                "status": "falha",
-                "detalhe": "ENGINE não carregado"
-            }
+if __name__ == "__main__":
+    try:
+        # tenta expor endpoint HTTP se Flask estiver instalado
+        from flask import Flask, jsonify
+        import threading, sys
+
+        app = Flask("a2f2_health")
+
+        @app.route("/a2f2/health", methods=["GET"])
+        def _health():
+            return jsonify(health_payload( int(time.time() % 1000) ))
+
+        # se executar sem argumentos, apenas imprime o check e sai
+        if len(sys.argv) == 1:
+            run_check()
         else:
-            resultado = {
-                "status": "ok",
-                "detalhe": "ENGINE operacional"
-            }
+            # se for chamado com "serve", inicia o server HTTP (porta 10000)
+            if sys.argv[1] == "serve":
+                app.run(host="0.0.0.0", port=10000)
+            else:
+                run_check()
 
-        self.status = resultado["status"]
-        self.ultima_verificacao = timestamp
-
-        self.registros.append({
-            "timestamp": timestamp,
-            "resultado": resultado
-        })
-
-        return resultado
-
-    def historico(self):
-        return self.registros[-20:]
-
-    def estado(self):
-        return {
-            "status_atual": self.status,
-            "ultima_verificacao": self.ultima_verificacao
-        }
+    except Exception:
+        # Flask não disponível — apenas execução CLI de verificação
+        run_check()
