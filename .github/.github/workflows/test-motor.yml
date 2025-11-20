@@ -1,23 +1,22 @@
-name: Teste import motor
+name: Teste de importação de motor
 
 on:
   push:
     paths:
-      - '**.py'
-      - '.github/**'
-  workflow_dispatch:
+      - "**/*.py"
+      - ".github/workflows/**"
 
 jobs:
-  run-test-import:
+  executar-teste-importar:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
+      - name: Baixar repositório
         uses: actions/checkout@v4
 
-      - name: Setup Python
+      - name: Configurar Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
       - name: Instalar dependências (se houver)
         run: |
