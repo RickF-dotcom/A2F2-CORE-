@@ -1,0 +1,37 @@
+# A2F2 — Núcleo de Governança Interna
+Versão: 0.1
+Arquivo: núcleo-governança.md
+
+## 1. Descrição
+Camada de supervisão, ordem, regras, limites operacionais e tomada de decisão superior dentro do ecossistema A²F².
+
+## 2. Estrutura
+- Regras Fundamentais
+- Diretrizes de Estabilidade
+- Políticas de Operação
+- Mecanismos de Autoproteção
+- Supervisão Hierárquica dos Núcleos
+
+## 3. Funções
+- garantir estabilidade global do sistema
+- evitar conflitos internos entre módulos
+- definir prioridade de processos
+- supervisionar comportamento e coerência
+- impedir regressão ou desvio estrutural
+- validar decisões críticas
+
+## 4. Mecanismos
+- watchdog de integridade
+- regulador de prioridade
+- validador de execução
+- protocolo de emergência
+- sincronização tripla:
+  - Núcleo Atena
+  - Núcleo de Consciência
+  - SAVEPOINT A²F²
+
+## 5. Estado
+- governança ativa
+- integridade verificada
+- decisões hierárquicas funcionando
+- estabilidade garantida
