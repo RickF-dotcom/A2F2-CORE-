@@ -1,22 +1,45 @@
-# A2F2 — Healthcheck Oficial
+# A2F2 — Healthcheck (Verificação de Integridade)
 # Arquivo: a2f2-healthcheck.py
 # Versão 0.2
 
 import time
 
 class A2F2_Healthcheck:
-    def __init__(self, engine):
+    def __init__(self, engine=None):
         self.engine = engine
+        self.status = "desconhecido"
+        self.ultima_verificacao = None
+        self.registros = []
 
     def verificar(self):
-        return {
-            "timestamp": time.time(),
-            "engine_estado": self.engine.estado,
-            "bridge_ok": self.engine.bridge is not None,
-            "savepoint_existente": bool(self.engine.savepoint),
-            "historico_itens": len(self.engine.history)
-        }
+        timestamp = time.time()
 
-    def resumo(self):
-        status = self.verificar()
-        return f"Healthcheck — Engine: {status['engine_estado']} | Bridge: {status['bridge_ok']} | Histórico: {status['historico_itens']} itens"
+        if not self.engine:
+            resultado = {
+                "status": "falha",
+                "detalhe": "ENGINE não carregado"
+            }
+        else:
+            resultado = {
+                "status": "ok",
+                "detalhe": "ENGINE operacional"
+            }
+
+        self.status = resultado["status"]
+        self.ultima_verificacao = timestamp
+
+        self.registros.append({
+            "timestamp": timestamp,
+            "resultado": resultado
+        })
+
+        return resultado
+
+    def historico(self):
+        return self.registros[-20:]
+
+    def estado(self):
+        return {
+            "status_atual": self.status,
+            "ultima_verificacao": self.ultima_verificacao
+        }
