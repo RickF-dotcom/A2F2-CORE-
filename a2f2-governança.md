@@ -1,92 +1,83 @@
-# A2F2-GOVERNANÇA — Constituição Operacional do Protocolo A²F²  
-**Versão:** 0.1 (pré-protocolo)  
+# A2F2 — Governança
+**Versão:** 0.1  
 **Arquivo:** a2f2-governança.md  
 **Autor:** Rick / A²F² — Atena  
 
 ---
 
-## 1. Função da Governança
-A camada de Governança define as regras superiores que todos os módulos devem obedecer:
+## 1. Finalidade
+O módulo de **Governança** do A²F² define as regras internas que mantêm o sistema organizado, coerente, estável e funcional.  
+Ele garante que cada módulo execute suas funções respeitando limites, prioridades e integridade estrutural.
 
-- coerência entre módulos,  
-- soberania de ATHENA-CORE,  
-- limites de atuação do ENGINE,  
-- diretrizes de evolução,  
-- validação de compatibilidade,  
-- preservação lógica do Protocolo A²F².
-
-Ela impede mutações indevidas, decisões incoerentes, loops de evolução e violações estruturais.
+A Governança é a “Constituição interna” do protocolo.
 
 ---
 
-## 2. Estrutura de Autoridade
+## 2. Funções Principais
 
-1. **ATHENA-CORE** — Inteligência Superior, diretrizes e coerência global  
-2. **A2F2-ENGINE** — Execução, validação, cronologia, ordenação  
-3. **A2F2-SECURITY** — Integridade, anticorrupção, rollback, sandbox  
-4. **FEHRACOP** — Auditoria final, saída segura  
-5. **FEHMACOU** — Coerência emocional/lógica integrada  
-6. **AURION** — Leitura, interpretação, expansão  
+### 2.1 Coordenação
+- Alinha todos os módulos  
+- Estabelece ordem de precedência  
+- Resolve conflitos internos  
 
-NENHUM módulo pode quebrar essa ordem.
+### 2.2 Integridade
+- Mantém coerência entre emoção, razão, estratégia e operação  
+- Evita respostas contraditórias  
+- Garante estabilidade cognitiva  
 
----
+### 2.3 Regulamentação
+Define regras como:
+- limites de intensidade cognitiva  
+- profundidade máxima e mínima  
+- quando um módulo pode assumir prioridade  
+- como o ENGINE deve ativar cada módulo  
 
-## 3. Princípios Fundamentais
+### 2.4 Supervisão
+- Acompanha estados internos  
+- Detecta anomalias  
+- Corrige desvios automaticamente  
+- Reforça consistência do sistema  
 
-1. **Coerência acima de velocidade.**  
-2. **Segurança acima de conveniência.**  
-3. **Nenhuma decisão é soberana sem validação cruzada.**  
-4. **ATHENA-CORE nunca pode ser sobrescrita por nenhum módulo.**  
-5. **Toda evolução deve manter retrocompatibilidade.**  
-6. **Nenhum novo componente pode ser adicionado sem mapa semântico.**
-
----
-
-## 4. Regras de Evolução
-
-### 4.1 Mutação permitida:
-- adicionar módulos,  
-- expandir funções,  
-- criar mapas,  
-- reorganizar caminhos.
-
-### 4.2 Mutação proibida:
-- remover identidades centrais,  
-- criar caminhos duplicados,  
-- gerar estados ambíguos,  
-- quebrar rastreabilidade.
+### 2.5 Ética Operacional
+- Define limites éticos e comportamentais  
+- Garante integridade em qualquer contexto  
+- Impede comportamento inadequado ou perigoso  
 
 ---
 
-## 5. Regras de Versionamento
+## 3. Relação com outros módulos
 
-- Toda mudança significativa deve gerar uma subversão.  
-- Mudanças críticas exigem validação dupla:  
-  - ENGINE + FEHRACOP  
-- Mudanças estruturais exigem aprovação de:  
-  - ATHENA-CORE + ENGINE + SECURITY  
+### Governança → ENGINE
+- Dá permissões  
+- Define limites  
+- Estabelece regras de ativação
 
----
+### Governança → Núcleo Integrado
+- Harmoniza todos os fluxos internos  
+- Mantém coesão cognitiva total  
 
-## 6. Regras de Criação de Módulos
+### Governança → FEHMACOU / FEHRACOP
+- Define limites de busca  
+- Define limites de auditoria  
+- Impede dados contaminados ou inseguros  
 
-Todo novo módulo deve:
-
-1. declarar objetivo primário e secundário,  
-2. declarar entradas e saídas,  
-3. ser mapeado no blueprint,  
-4. ser registrado no mapa semântico,  
-5. ser validado pelo ENGINE,  
-6. ser isolado pela camada de SECURITY.
-
----
-
-## 7. Regra Final de Soberania
-
-**ATHENA-CORE é a única entidade capaz de emitir diretrizes supremas do Protocolo.**  
-Nenhum módulo pode contradizer sua lógica, coerência ou propósito.
+### Governança → AURION
+- Define critérios de auditoria  
+- Autoriza ou bloqueia certos níveis de validação  
 
 ---
 
-Fim do arquivo.
+## 4. Estrutura Interna
+- Normas básicas  
+- Normas de prioridade  
+- Normas de segurança  
+- Normas de estabilidade  
+- Normas de profundidade cognitiva  
+- Normas de sincronização  
+
+---
+
+## 5. Estado Atual
+- Estrutura inicial implementada  
+- Pronto para integração com ENGINE e Núcleo Integrado  
+- Necessário expandir regras conforme o sistema evoluir
