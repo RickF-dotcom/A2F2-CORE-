@@ -1,20 +1,17 @@
 # test_import_motor.py
-# Teste simples para verificar se motor_a2f2 importa corretamente
+# Teste simples de importação do wrapper motor_a2f2
 
-import importlib, sys
+import importlib, sys, traceback
 
 try:
     m = importlib.import_module("motor_a2f2")
     Motor = getattr(m, "Motor", None)
     MotorA2F2 = getattr(m, "MotorA2F2", None)
-
     print("IMPORT_OK")
-    print("Módulo motor_a2f2:", getattr(m, "__file__", "<nenhum>"))
+    print("m.__file__:", getattr(m, "__file__", None))
     print("Motor:", Motor)
     print("MotorA2F2:", MotorA2F2)
-
-except Exception as e:
+except Exception:
     print("IMPORT_FAIL")
-    import traceback
     traceback.print_exc()
     print("sys.path:", sys.path)
