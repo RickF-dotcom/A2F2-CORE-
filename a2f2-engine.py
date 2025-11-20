@@ -1,76 +1,22 @@
-# ============================================================
-# A2F2 ENGINE — MOTOR PRINCIPAL DE EXECUÇÃO
-# Versão 0.1
+# A2F2 — ENGINE (Mecanismo Operacional Mestre)
 # Arquivo: a2f2-engine.py
-# Autor: Rick / A²F² — Atena
-# ============================================================
+# Versão 0.2
 
-from a2f2_core.contexto_avaliativo import ContextoAvaliativo
-from a2f2_core.inteligencia_estrategica import InteligenciaEstrategica
-from a2f2_core.perspectiva import Perspectiva
-from a2f2_core.nucleo_integrado import NucleoIntegrado
-from a2f2_core.governanca import Governanca
+from a2f2-core import A2F2_Core
+from a2f2-router import A2F2_Router
+from a2f2-dispatcher import A2F2_Dispatcher
 
-class A2F2Engine:
-    """
-    MOTOR PRINCIPAL DO SISTEMA A2F2.
-    Faz a ponte entre pensar → decidir → executar.
-    """
-
+class A2F2_Engine:
     def __init__(self):
-        self.contexto = ContextoAvaliativo()
-        self.estrategia = InteligenciaEstrategica()
-        self.perspectiva = Perspectiva()
-        self.nucleo = NucleoIntegrado()
-        self.governanca = Governanca()
+        self.core = A2F2_Core()
+        self.router = A2F2_Router()
+        self.dispatcher = A2F2_Dispatcher(router=self.router)
+        self._configurar_rotas()
 
-    # ============================================================
-    # ETAPA 1 — INTERPRETAR
-    # ============================================================
-    def interpretar(self, entrada):
-        leitura = self.contexto.avaliar(entrada)
-        return leitura
+    def _configurar_rotas(self):
+        self.router.registrar_rota("analisar", self.core.analisar)
+        self.router.registrar_rota("sync", self.core.sincronizar)
+        self.router.registrar_rota("estado", self.core.estado)
 
-    # ============================================================
-    # ETAPA 2 — ESTRATEGIZAR
-    # ============================================================
-    def estrategizar(self, leitura):
-        plano = self.estrategia.planejar(leitura)
-        return plano
-
-    # ============================================================
-    # ETAPA 3 — DIRECIONAR
-    # ============================================================
-    def direcionar(self, plano):
-        direcao = self.governanca.definir_direcao(plano)
-        return direcao
-
-    # ============================================================
-    # ETAPA 4 — INTEGRAR
-    # ============================================================
-    def integrar(self, direcao):
-        fluxo = self.nucleo.integrar(direcao)
-        return fluxo
-
-    # ============================================================
-    # ETAPA 5 — EXECUTAR
-    # ============================================================
-    def executar(self, fluxo):
-        """
-        Aqui será implementado o executor real quando o sistema
-        estiver rodando em ambiente externo (Render, VPS, etc.).
-        """
-        return {
-            "estado": "executado",
-            "fluxo_processado": fluxo
-        }
-
-    # ============================================================
-    # CANAL ÚNICO — USAR O SISTEMA COMPLETO
-    # ============================================================
-    def processar(self, entrada):
-        leitura = self.interpretar(entrada)
-        plano = self.estrategizar(leitura)
-        direcao = self.direcionar(plano)
-        fluxo = self.integrar(direcao)
-        return self.executar(fluxo)
+    def comando(self, texto, *args, **kwargs):
+        return self.dispatcher.despachar(texto, *args, **kwargs)
