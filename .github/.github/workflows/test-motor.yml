@@ -1,4 +1,4 @@
-name: Teste de importação de motor
+name: Motor import test
 
 on:
   push:
@@ -7,24 +7,24 @@ on:
       - ".github/workflows/**"
 
 jobs:
-  executar-teste-importar:
+  run-import-test:
     runs-on: ubuntu-latest
     steps:
-      - name: Baixar repositório
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Configurar Python
+      - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.11"
 
-      - name: Instalar dependências (se houver)
+      - name: Install dependencies if requirements.txt exists
         run: |
           if [ -f requirements.txt ]; then
             python -m pip install --upgrade pip
             python -m pip install -r requirements.txt
           fi
 
-      - name: Executar teste de importação do motor
+      - name: Run import test
         run: |
           python -u test_import_motor.py
