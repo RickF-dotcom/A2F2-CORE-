@@ -1,22 +1,62 @@
-# A2F2 — ENGINE (Mecanismo Operacional Mestre)
+# A2F2 — ENGINE MASTER
+# Controlador operacional principal do ecossistema
 # Arquivo: a2f2-engine.py
-# Versão 0.2
+# Versão: 0.1
 
-from a2f2-core import A2F2_Core
-from a2f2-router import A2F2_Router
-from a2f2-dispatcher import A2F2_Dispatcher
+from a2f2_masterlink import A2F2MasterLink
+from a2f2_savepoint import A2F2_Savepoint
+from a2f2_storage import A2F2_Storage
 
-class A2F2_Engine:
+class A2F2Engine:
+
     def __init__(self):
-        self.core = A2F2_Core()
-        self.router = A2F2_Router()
-        self.dispatcher = A2F2_Dispatcher(router=self.router)
-        self._configurar_rotas()
+        self.masterlink = A2F2MasterLink()
+        self.storage = A2F2_Storage("a2f2_engine_data")
+        self.savepoint = A2F2_Savepoint(self.storage)
+        self.state = {
+            "executions": 0,
+            "registered_sources": [],
+            "last_run": None
+        }
 
-    def _configurar_rotas(self):
-        self.router.registrar_rota("analisar", self.core.analisar)
-        self.router.registrar_rota("sync", self.core.sincronizar)
-        self.router.registrar_rota("estado", self.core.estado)
+    # ----------------------------------------
+    # REGISTRAR FONTE
+    # ----------------------------------------
+    def add_source(self, name):
+        self.masterlink.registrar_fonte(name)
+        self.state["registered_sources"].append(name)
 
-    def comando(self, texto, *args, **kwargs):
-        return self.dispatcher.despachar(texto, *args, **kwargs)
+    # ----------------------------------------
+    # EXECUTAR PIPELINE COMPLETO
+    # ----------------------------------------
+    def run(self):
+        resultado = self.masterlink.executar()
+        self.state["executions"] += 1
+        self.state["last_run"] = resultado
+        return resultado
+
+    # ----------------------------------------
+    # SAVEPOINT
+    # ----------------------------------------
+    def criar_save(self, tag="auto-save"):
+        return self.savepoint.criar(self.state, tag)
+
+    def restaurar_save(self, tag):
+        dado = self.savepoint.carregar(tag)
+        if "error" in dado:
+            return dado
+        return self.savepoint.restaurar(self)
+
+    # ----------------------------------------
+    # STATUS
+    # ----------------------------------------
+    def status(self):
+        return {
+            "state": self.state,
+            "masterlink": self.masterlink.status(),
+            "savepoints": self.savepoint.listar()
+        }
+
+if __name__ == "__main__":
+    eng = A2F2Engine()
+    print("Engine status inicial:", eng.status())
