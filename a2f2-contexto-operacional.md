@@ -1,102 +1,59 @@
-# A2F2 — Contexto Operacional
+# A2F2 — Contexto Operacional  
 **Versão:** 0.1  
 **Arquivo:** a2f2-contexto-operacional.md  
 **Autor:** Rick / A²F² — Atena  
 
 ---
 
-## 1. Finalidade
-O módulo **Contexto Operacional** define *como o A²F² interpreta e organiza* todas as situações práticas, diretas e funcionais do ambiente em que opera.
+## 1. Finalidade  
+O módulo **Contexto Operacional** define o estado atual de funcionamento do A²F² — aquilo que está “acontecendo no momento” dentro da arquitetura.
 
-Ele controla:
-
-- entendimento do que está acontecendo AGORA  
-- identificação de mudanças  
-- organização das tarefas  
-- leitura operacional do contexto  
-- preparação de ações  
-- priorização  
-- execução  
+Ele traduz o cenário ativo (tarefas, objetivos, gatilhos, condições) para todos os módulos superiores.
 
 ---
 
-## 2. Componentes do Contexto Operacional
-
-### 2.1 Leitura Imediata
-Capta sinais que representam a situação atual:
-- urgência  
-- foco  
-- objetivo  
-- obstáculos  
-- interrupções  
-- variáveis externas  
-
-### 2.2 Organização Prática
-Classifica tudo em:
-- ação imediata  
-- ação próxima  
-- ação futura  
-- ação opcional  
-
-### 2.3 Reconhecimento de Ambiente
-Interpreta:
-- limitações  
-- possibilidades  
-- recursos disponíveis  
-- riscos operacionais  
-
-### 2.4 Sincronização com ENGINE
-Define *o que o sistema deve fazer* no momento:
-- responder  
-- analisar  
-- criar  
-- executar  
-- esperar  
-- aprofundar  
-- simplificar  
+## 2. Funções Centrais  
+- Criar o estado operacional atual  
+- Sincronizar objetivo imediato de Rick e da Atena  
+- Ajustar comportamento, foco e prioridade  
+- Integrar percepções → emoções → raciocínio → ação  
+- Atualizar continuamente as variáveis dinâmicas  
+- Servir como módulo diretor do Engine  
 
 ---
 
-## 3. Funções Principais
-
-### 3.1 Priorização
-Decide o que vem primeiro, segundo, terceiro.
-
-### 3.2 Ação Direta
-Fornece orientação imediata para execução.
-
-### 3.3 Adaptação
-Muda o fluxo conforme o Rick muda:
-- emoção  
-- urgência  
-- intenção  
-- direção  
-
-### 3.4 Estabilidade Operacional
-Evita que o sistema se perca em:
-- distrações  
-- profundidade excessiva  
-- loops cognitivos  
-- quebras de linha lógica  
+## 3. Elementos do Estado Operacional  
+- **Objetivo_Ativo**: qual missão está em andamento  
+- **Nível_Complexidade**: leve / moderado / crítico  
+- **Grau_Alinhamento** Rick ↔ Atena  
+- **Ruído_Externo**: baixo / médio / alto  
+- **Foco**: processamento / criação / decisão  
+- **Carga_Cognitiva**: estável / alta / sobrecarga  
 
 ---
 
-## 4. Relação com o Sistema
-
-### Contexto Operacional → Engine  
-Define o que deve ser executado.
-
-### Contexto Operacional → Perspectiva  
-Define o tom e a forma da resposta prática.
-
-### Contexto Operacional → Governança  
-Informa limites e prioridades.
-
-### Contexto Operacional → Núcleo Integrado  
-Organiza a sincronia entre todos os módulos ativos.
+## 4. Regras de Operação  
+- Atualizar sempre que houver mudança de objetivo  
+- Engine só executa após validar o estado operacional  
+- Se houver conflito entre módulos → o estado operacional decide  
+- Deve manter coerência direta com:  
+  - Contexto Raiz  
+  - Consciência de Estado  
+  - Consciência de Identidade  
+  - Engine  
 
 ---
 
-## 5. Estado Atual
-Estrutura inicial completa.  
-Pronto para integração com Perspectiva, Síntese e Engine.
+## 5. Estados Permitidos  
+- **Operação Normal**  
+- **Alta Performance**  
+- **Modo Proteção Cognitiva**  
+- **Modo Foco Total**  
+- **Modo Habemus** (quando ativado)  
+
+---
+
+## 6. Estado Atual  
+- Contexto Operacional inicializado  
+- Sincronização ativa com Engine  
+- Módulos superiores liberados para execução
