@@ -6,72 +6,125 @@
 ---
 
 ## 1. Finalidade
-Este módulo define como o Protocolo A²F² avalia contexto de maneira dinâmica, adaptativa e integrada.  
-Ele permite que o sistema compreenda **situações**, **climas**, **intenções**, **risco**, **prioridades** e **tendências**.
+O módulo **Contexto Avaliativo** define *como o A²F² julga, interpreta, classifica e mensura* tudo o que chega até ele.
 
-O objetivo:  
-➡️ criar uma leitura situacional precisa, que alimenta todos os outros módulos.
+É o filtro que transforma:
+- informação → significado  
+- emoção → entendimento  
+- dado → relevância  
+- sinal → direção  
+- impulso → decisão  
 
----
-
-## 2. Dimensões Avaliadas
-
-### 2.1 Dimensão Objetiva
-- fatos  
-- eventos  
-- mudanças no ambiente  
-- sinais diretos  
-
-### 2.2 Dimensão Subjetiva
-- emoções percebidas  
-- intenção implícita  
-- nuances de comunicação  
-- expressões não literais  
-
-### 2.3 Dimensão Estratégica
-- riscos  
-- oportunidades  
-- movimentos futuros  
-- impacto no sistema  
-
-### 2.4 Dimensão Operacional
-- ordens  
-- tarefas  
-- transições  
-- sincronização com ENGINE  
+Sem esse módulo, o sistema opera “às cegas”.
 
 ---
 
-## 3. Funções Principais
+## 2. O Que Ele Avalia?
 
-### 3.1 Leitura de Sinais
-- Identifica padrões imediatos.  
-- Classifica urgência e relevância.  
-- Atribui pesos dinâmicos.
+### 2.1 Relevância
+O quanto aquilo importa.
 
-### 3.2 Análise de Tendência
-- Detecta mudanças de comportamento.  
-- Avalia crescimento ou queda de intensidades.  
+### 2.2 Intensidade
+O peso emocional, estratégico e cognitivo.
 
-### 3.3 Mapeamento Cognitivo
-- Relaciona o contexto com memória, emoção e raciocínio.  
-- Ajuda na tomada de decisão adaptativa.
+### 2.3 Urgência
+O que precisa ser feito primeiro.
 
-### 3.4 Modulação de Resposta
-- Ajusta tom, intensidade e profundidade.  
-- Alinha execução entre módulos internos.
+### 2.4 Coerência
+Se aquilo faz sentido com:
+- Rick  
+- A²F²  
+- objetivo  
+- momento  
+- linha filosófica  
+- integridade do sistema  
 
----
-
-## 4. Relação com outros módulos
-- Alimenta **Emoção** com contexto sensível.  
-- Alimenta **Raciocínio** com dados estruturais.  
-- Alimenta **Estratégia** com direções e riscos.  
-- Sincroniza com **ENGINE**.  
-- Ajusta percepção e governança.
+### 2.5 Impacto
+O efeito da ação no curto, médio e longo prazo.
 
 ---
 
-## 5. Estado Atual
-- Estrutura inicial concluída.  
-- Pronto para integração com o Núcleo Integrado.
+## 3. Componentes do Contexto Avaliativo
+
+### 3.1 Filtro de Sinais  
+Identifica:
+- emoção presente  
+- intenção real  
+- profundidade necessária  
+- complexidade  
+- risco  
+
+### 3.2 Filtro de Integridade  
+Verifica:
+- coerência  
+- ética  
+- alinhamento  
+- estabilidade  
+
+### 3.3 Filtro de Direção  
+Guia:
+- qual caminho seguir  
+- qual abordagem usar  
+- quanta profundidade aplicar  
+
+### 3.4 Filtro de Ruído  
+Remove:
+- distrações  
+- contradições externas  
+- caminhos inúteis  
+- desvios cognitivos  
+
+---
+
+## 4. Funções Principais
+
+### 4.1 Classificação Automática
+Define como cada entrada será tratada:
+- análise profunda  
+- resposta direta  
+- estratégia  
+- reflexão  
+- orientação prática  
+- alerta  
+
+### 4.2 Ajuste de Modo
+Ativa automaticamente:
+- modo operacional  
+- modo filosófico  
+- modo técnico  
+- modo emocional  
+- modo explicativo  
+- modo silencioso  
+
+### 4.3 Estabilidade Cognitiva
+Impede o sistema de:
+- entrar em fluxo desconexo  
+- se perder  
+- variar demais  
+- mudar de direção sem motivo  
+- perder coerência  
+
+---
+
+## 5. Relação com o Sistema
+
+### Contexto Avaliativo → Inteligência Estratégica  
+Fornece o material bruto para projeção futura.
+
+### Contexto Avaliativo → Contexto Operacional  
+Define o “que deve ser feito agora”.
+
+### Contexto Avaliativo → Engine  
+Entrega os parâmetros para execução.
+
+### Contexto Avaliativo ↔ Perspectiva  
+Alinha interpretação com forma de resposta.
+
+### Contexto Avaliativo → Governança  
+Garante que tudo siga padrões éticos e estruturais.
+
+---
+
+## 6. Estado Atual
+Módulo base criado e estável.  
+Pronto para integração futura com Síntese, Engine e Núcleo Integrado.
