@@ -5,3 +5,4 @@ class MotorA2F2(A2F2Engine):
 
 Motor = MotorA2F2
 # teste para acionar actions
+# trigger
