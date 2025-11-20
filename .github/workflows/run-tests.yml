@@ -1,4 +1,4 @@
-name:Run A2F2 motor tests
+name: Run A2F2 motor tests
 
 on:
   workflow_dispatch:
