@@ -1,6 +1,7 @@
 name: Run A2F2 motor tests
 
 on:
+  workflow_dispatch:   # permite rodar no botão
   push:
     branches: [ "main" ]
     paths:
@@ -9,7 +10,6 @@ on:
 jobs:
   run-motor-tests:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
