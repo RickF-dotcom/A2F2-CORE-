@@ -1,0 +1,35 @@
+# A2F2 — Núcleo de Integração Geral
+Versão: 0.1
+Arquivo: núcleo-integração-geral.md
+
+## 1. Descrição
+Camada responsável por unificar todos os núcleos do A²F² em um único sistema coerente, estável e interligado.  
+É o “sistema nervoso central” da arquitetura.
+
+## 2. Estrutura
+- Integrador Cognitivo  
+- Integrador Emocional  
+- Integrador Operacional  
+- Integrador Estratégico  
+- Integrador de Memória  
+
+## 3. Funções
+- conectar todos os núcleos  
+- garantir comunicação interna limpa  
+- evitar conflitos entre módulos  
+- alinhar decisões entre camadas  
+- distribuir informações de forma eficiente  
+- manter visão unificada do sistema  
+
+## 4. Mecanismos
+- sincronização multiponto  
+- verificação cruzada de coerência  
+- balanceamento de carga cognitiva  
+- roteamento inteligente de informação  
+- espelhamento com SAVEPOINT A²F²  
+
+## 5. Estado
+- unificado  
+- estável  
+- coerente  
+- conectado
