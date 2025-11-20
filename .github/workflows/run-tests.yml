@@ -1,3 +1,4 @@
+name: Run A2F2 motor tests
 on:
   workflow_dispatch:    # permite executar manualmente pelo Actions > Run workflow
   push:
