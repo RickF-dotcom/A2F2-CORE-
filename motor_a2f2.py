@@ -1,11 +1,11 @@
 # motor_a2f2.py
-# Wrapper oficial do motor A2F2 — importa a classe principal do engine
+# Wrapper oficial do motor A2F2 — implementa/exporta MotorA2F2 para o ecossistema
 
 from a2f2_engine import A2F2Engine
 
 class MotorA2F2(A2F2Engine):
-    """Wrapper vazio para compatibilidade com importações antigas."""
+    """Wrapper vazio/compatibilidade: o 'motor' do repositório espera MotorA2F2."""
     pass
 
-# alias compatível
+# Alias comum usado em alguns módulos
 Motor = MotorA2F2
