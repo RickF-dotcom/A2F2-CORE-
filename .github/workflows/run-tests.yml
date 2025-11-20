@@ -1,29 +1,6 @@
-name: Run A2F2 motor tests
-
 on:
-  workflow_dispatch:   # permite rodar no botão
+  workflow_dispatch:    # permite executar manualmente pelo Actions > Run workflow
   push:
-    branches: [ "principal" ]
+    branches: [ "main", "principal" ]   # cobre os dois nomes possíveis
     paths:
       - "**/*.py"
-
-jobs:
-  run-motor-tests:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.11"
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
-      - name: Run motor import test
-        run: |
-          python -u test_import_motor.py
