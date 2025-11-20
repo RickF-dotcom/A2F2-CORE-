@@ -3,7 +3,7 @@ name: Run A2F2 motor tests
 on:
   workflow_dispatch:   # permite rodar no botão
   push:
-    branches: [ "main" ]
+    branches: [ "principal" ]
     paths:
       - "**/*.py"
 
