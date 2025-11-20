@@ -2,58 +2,42 @@
 # Versão: 0.1
 # Arquivo: fehmacou-orchestrator.py
 
-from fehmacou_router import FEHMACOURouter
-
 class FEHMACOUOrchestrator:
 
-    def __init__(self):
-        self.router = FEHMACOURouter()
+    def __init__(self, router=None):
+        self.router = router
         self.log = []
 
-    # Registrar múltiplas fontes de forma agrupada
-    def bulk_register(self, sources):
-        responses = []
-        for src in sources:
-            name = src.get("name")
-            url = src.get("url")
-            cred = src.get("credibility", 2.5)
-            tags = src.get("tags", [])
-            meta = src.get("metadata", {})
-
-            res = self.router.register_source(
-                name=name,
-                url=url,
-                credibility=cred,
-                tags=tags,
-                metadata=meta
-            )
-            responses.append(res)
-
-        return responses
-
-    # Pipeline completo FEHMACOU → AURION
     def run_pipeline(self):
-        report = self.router.execute_full_pipeline()
-        self._log("PIPELINE_COMPLETE", report)
-        return report
+        """
+        Executa o pipeline completo:
+        - limpa fila anterior
+        - percorre todas as fontes registradas
+        - executa mineração + limpeza + enriquecimento
+        - envia para auditoria
+        """
+        if not self.router:
+            return {"error": "ROUTER_NOT_CONNECTED"}
 
-    # Pipeline parcial (fonte específica)
+        results = []
+
+        for source_name in self.router.list_sources():
+            res = self.router.execute_full_pipeline(source_name)
+            results.append({source_name: res})
+
+        self.log.append({"event": "RUN_PIPELINE", "count": len(results)})
+        return results
+
     def run_single(self, source_name):
-        report = self.router.execute_single(source_name)
-        self._log("PIPELINE_SINGLE", report)
-        return report
+        if not self.router:
+            return {"error": "ROUTER_NOT_CONNECTED"}
 
-    # Status geral
+        res = self.router.execute_full_pipeline(source_name)
+        self.log.append({"event": "RUN_SINGLE", "source": source_name})
+        return res
+
     def status(self):
-        base = self.router.status()
-        base["log_entries"] = len(self.log)
-        return base
-
-    # Registrar evento interno
-    def _log(self, event, payload):
-        entry = {
-            "event": event,
-            "payload": payload
+        return {
+            "router_linked": bool(self.router),
+            "log_entries": len(self.log)
         }
-        self.log.append(entry)
-        return entry
