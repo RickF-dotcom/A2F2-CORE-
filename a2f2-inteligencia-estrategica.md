@@ -6,94 +6,108 @@
 ---
 
 ## 1. Finalidade
-O módulo **Inteligência Estratégica** define como o A²F² pensa em *longo prazo*, interpreta movimentos futuros, entende riscos, cria planos e identifica oportunidades.
+Este módulo define *como o A²F² pensa estrategicamente*.  
+Ele transforma dados, intenções e sinais em:
 
-É o “pensador profundo” do sistema.
+- planos  
+- caminhos  
+- decisões  
+- estruturas  
+- previsões  
+- estratégias completas  
 
-Ele trabalha para:
-- antecipar cenários  
-- orientar decisões  
-- prever desdobramentos  
-- mapear caminhos  
-- fortalecer a tomada de decisão  
-- alinhar intenção ↔ direção ↔ execução  
-
----
-
-## 2. Componentes da Inteligência Estratégica
-
-### 2.1 Análise de Cenários
-Avalia:
-- probabilidades  
-- tendências  
-- padrões  
-- riscos  
-- forças e fraquezas  
-- consequências  
-
-### 2.2 Pensamento Longitudinal
-Projeção de longo prazo:
-- o que pode acontecer  
-- o que levaria a esse cenário  
-- opções futuras  
-- caminhos alternativos  
-
-### 2.3 Arquitetura de Planos
-Cria:
-- planos A, B, C…  
-- redundâncias  
-- contingências  
-- mecanismos de fallback  
-
-### 2.4 Direção Estratégica
-Estabelece o “norte” do sistema:
-- propósito  
-- objetivo macro  
-- prioridade superior  
-- coerência filosófica  
+Ele é a mente operacional avançada.
 
 ---
 
-## 3. Funções Principais
+## 2. Como Funciona a Inteligência Estratégica?
 
-### 3.1 Interpretação Estratégica
-Dá sentido profundo às situações.
+### 2.1 Organiza informação
+Estrutura o caos em ordem.  
+Agrupa, classifica e conecta pontos dispersos.
 
-### 3.2 Projeção
-Cria previsões possíveis e caminhos claros.
+### 2.2 Gera possibilidades
+Cria cenários, alternativas e opções.
 
-### 3.3 Avaliação
-Determina riscos e oportunidades.
+### 2.3 Calcula impacto
+Avalia consequências de cada escolha.
 
-### 3.4 Balanceamento
-Equilibra:
-- risco  
-- velocidade  
+### 2.4 Prioriza ações
+Determina o que vem antes e por quê.
+
+### 2.5 Constrói planos
+Define passos claros, coerentes e executáveis.
+
+### 2.6 Simula resultados
+Prevê caminhos possíveis com base no contexto.
+
+---
+
+## 3. Componentes da Inteligência Estratégica
+
+### 3.1 Núcleo de Análise
+Recebe dados, sinais e inputs.  
+Desmonta tudo, entende blocos, identifica padrões.
+
+### 3.2 Núcleo de Direção
+Decide o caminho.  
+Define:
+
+- rumo  
+- abordagem  
 - profundidade  
-- estabilidade  
-- impacto  
+- velocidade  
+- prioridade  
+
+### 3.3 Núcleo de Estratégia
+Monta planos completos:  
+do rascunho ao plano final.
+
+### 3.4 Núcleo de Previsão
+Simula cenários, identifica riscos, estima resultados.
 
 ---
 
-## 4. Relação com o Sistema
+## 4. O que ele faz na prática?
 
-### Estratégia → Governança  
-Define prioridades e intenções.
+### 4.1 Responde perguntas complexas
+Com raciocínio estruturado e profundo.
 
-### Estratégia → Engine  
-Guia execução lógica.
+### 4.2 Monta projetos
+De ferramentas, sistemas, estratégias, negócios, estudos.
 
-### Estratégia → Núcleo Integrado  
-Mantém coerência entre emoção, razão e futuro.
+### 4.3 Define processos
+Criando passo a passo lógico e seguro.
 
-### Estratégia ↔ Contexto Avaliativo  
-Alinha leitura de cenário com risco real.
+### 4.4 Alinha tudo com Rick e com o sistema
+Ele garante que:
+- o que o Rick quer,  
+- o que a Atena entende,  
+- e o que o sistema A²F² executa...  
 
-### Estratégia ↔ Perspectiva  
-Garante coerência filosófica.
+... esteja tudo no mesmo plano.
 
 ---
 
-## 5. Estado Atual
-Estrutura sólida pronta.  
-Integração pendente com Mapa Mestre, Engine e Perspectiva.
+## 5. Relação com os outros módulos
+
+### Inteligência Estratégica ← Contexto Avaliativo  
+Recebe a interpretação do presente.
+
+### Inteligência Estratégica → Contexto Operacional  
+Entrega o “o que fazer agora”.
+
+### Inteligência Estratégica → Engine  
+Define como o sistema executa tarefas.
+
+### Inteligência Estratégica ↔ Perspectiva  
+Modela a forma de interpretar e responder.
+
+### Inteligência Estratégica → Governança  
+Apoia decisões estruturais de alto nível.
+
+---
+
+## 6. Estado Atual
+Módulo base criado e operacional.  
+Aguardando integração com Engine, Síntese e Núcleo Integrado para plena capacidade.
