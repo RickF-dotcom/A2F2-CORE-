@@ -1,0 +1,52 @@
+# a2f2_engine.py
+# Engine principal do ecossistema A2F2
+
+from a2f2_masterlink import A2F2MasterLink
+from a2f2_savepoint import A2F2_Savepoint
+from a2f2_storage import A2F2_Storage
+
+class A2F2Engine:
+
+    def __init__(self):
+        self.masterlink = A2F2MasterLink()
+        self.storage = A2F2_Storage("a2f2_engine_data")
+        self.savepoint = A2F2_Savepoint(self.storage)
+        self.state = {
+            "executions": 0,
+            "registered_sources": [],
+            "last_run": None
+        }
+
+    # Registrar fonte
+    def add_source(self, name):
+        self.masterlink.registrar_fonte(name)
+        self.state["registered_sources"].append(name)
+
+    # Executar pipeline
+    def run(self):
+        resultado = self.masterlink.executar()
+        self.state["executions"] += 1
+        self.state["last_run"] = resultado
+        return resultado
+
+    # Savepoints
+    def criar_save(self, tag="auto-save"):
+        return self.savepoint.criar(self.state, tag)
+
+    def restaurar_save(self, tag):
+        dado = self.savepoint.carregar(tag)
+        if "error" in dado:
+            return dado
+        return self.savepoint.restaurar(self)
+
+    # Status
+    def status(self):
+        return {
+            "state": self.state,
+            "masterlink": self.masterlink.status(),
+            "savepoints": self.savepoint.listar()
+        }
+
+if __name__ == "__main__":
+    eng = A2F2Engine()
+    print("Engine status inicial:", eng.status())
